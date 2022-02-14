@@ -1,18 +1,25 @@
 import { Injectable } from '@nestjs/common';
+import { find } from 'rxjs';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreatePokemonDto } from './dto/create-pokemon.dto';
 import { UpdatePokemonDto } from './dto/update-pokemon.dto';
 
 @Injectable()
 export class PokemonService {
+  //Importando todos os recursos do prisma
   constructor(private readonly prisma: PrismaService) {}
 
   create(createPokemonDto: CreatePokemonDto) {
-    return 'This action adds a new pokemon';
+    return this.prisma.pokemon.create({
+      data: {
+        ...createPokemonDto
+      }
+    });
   }
 
   findAll() {
-    return `This action returns all pokemon`;
+    //Você deve indicar a model/a sua tabela para ele utilizar as funções de query
+    return this.prisma.pokemon.findMany();
   }
 
   findOne(id: number) {
