@@ -1,0 +1,7 @@
+Instalando o Prisma
+  - npx prisma
+
+Iniciando o Prisma
+  - npx prisma init
+
+... Parou no 34:13
