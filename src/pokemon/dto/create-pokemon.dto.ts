@@ -1,4 +1,5 @@
-import { IsInt, IsNumber, IsOptional, IsString } from "class-validator";
+import { Prisma } from "@prisma/client";
+import { IsInt, IsOptional, IsString } from "class-validator";
 import { Pokemon } from "../entities/pokemon.entity";
 
 export class CreatePokemonDto extends Pokemon {
@@ -8,4 +9,7 @@ export class CreatePokemonDto extends Pokemon {
   @IsInt()
   @IsOptional()
   height?: number | null;
+
+  @IsOptional()
+  image?: Prisma.ImageUncheckedCreateNestedManyWithoutPokemonInput;
 }

@@ -5,4 +5,5 @@ export class Pokemon implements Prisma.PokemonUncheckedCreateInput {
   name: string;
   height?: number;
   image?: Prisma.ImageUncheckedCreateNestedManyWithoutPokemonInput;
+
 }
