@@ -10,6 +10,7 @@ export class PokemonService {
   constructor(private readonly prisma: PrismaService) {}
 
   create(createPokemonDto: CreatePokemonDto) {
+    //Você deve indicar a model/a sua tabela para ele utilizar as funções de query
     return this.prisma.pokemon.create({
       data: {
         ...createPokemonDto
@@ -23,14 +24,21 @@ export class PokemonService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} pokemon`;
+    return this.prisma.pokemon.findUnique({
+      where: { id },
+    });
   }
 
   update(id: number, updatePokemonDto: UpdatePokemonDto) {
-    return `This action updates a #${id} pokemon`;
+    return this.prisma.pokemon.update({
+      where: { id },
+      data: updatePokemonDto,
+    });
   }
 
   remove(id: number) {
-    return `This action removes a #${id} pokemon`;
+    return this.prisma.pokemon.delete({
+      where: { id },
+    });
   }
 }
